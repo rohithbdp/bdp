@@ -144,6 +144,7 @@ func main() {
 	}
 	
 	log.Printf("Server starting on port %s", port)
+	log.Printf("Server is ready to handle requests")
 	if err := http.ListenAndServe(":"+port, handler); err != nil {
 		log.Fatal(err)
 	}

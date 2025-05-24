@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: bdp-backend
+    runtime: go
+    rootDir: backend
+    buildCommand: go build -o app
+    startCommand: ./app
+    envVars:
+      - key: EMAIL_FROM
+        value: bolamalarohith@gmail.com
+      - key: EMAIL_PASSWORD
+        value: vciipbiwsfwqionf
+      - key: PORT
+        value: 8080
