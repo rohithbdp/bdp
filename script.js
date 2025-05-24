@@ -114,19 +114,50 @@ sections.forEach(section => {
 
 // Contact Form Handler
 const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', (e) => {
+const submitButton = contactForm.querySelector('button[type="submit"]');
+
+contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     // Get form values
     const formData = new FormData(contactForm);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        message: formData.get('message')
+    };
     
-    // Here you would typically send this to a backend service
-    // For now, we'll just show an alert
-    alert('Thank you for your message! I will get back to you soon.');
-    contactForm.reset();
+    // Disable submit button and show loading
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    
+    try {
+        // For local development, use http://localhost:8080
+        // For production, replace with your backend URL
+        const response = await fetch('http://localhost:8080/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        } else {
+            alert('Failed to send message. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to send message. Please try again later.');
+    } finally {
+        // Re-enable submit button
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Message';
+    }
 });
 
 // Typing Effect for Hero Title
