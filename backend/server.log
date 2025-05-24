@@ -1,0 +1,5 @@
+2025/05/24 00:07:55 Email FROM: bolamalarohith@gmail.com
+2025/05/24 00:07:55 Email configured: true
+2025/05/24 00:07:55 Server starting on port 8080
+2025/05/24 00:07:55 listen tcp :8080: bind: address already in use
+exit status 1
