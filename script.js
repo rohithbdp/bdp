@@ -132,9 +132,8 @@ contactForm.addEventListener('submit', async (e) => {
     submitButton.textContent = 'Sending...';
     
     try {
-        // For local development, use http://localhost:8080
-        // For production, replace with your backend URL
-        const response = await fetch('http://localhost:8080/api/contact', {
+        // Backend URL
+        const response = await fetch('https://bdp-feqa.onrender.com/api/contact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
