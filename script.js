@@ -1,29 +1,34 @@
-// Custom Cursor
-const cursor = document.querySelector('.cursor');
-const cursorFollower = document.querySelector('.cursor-follower');
+// Check if device is mobile
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    
-    setTimeout(() => {
-        cursorFollower.style.left = e.clientX + 'px';
-        cursorFollower.style.top = e.clientY + 'px';
-    }, 100);
-});
+// Custom Cursor (only for desktop)
+if (!isMobile) {
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
 
-// Add hover effect to clickable elements
-const clickables = document.querySelectorAll('a, button, .skill-tag, .client-card');
-clickables.forEach(element => {
-    element.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'scale(1.5)';
-        cursorFollower.style.transform = 'scale(2)';
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        
+        setTimeout(() => {
+            cursorFollower.style.left = e.clientX + 'px';
+            cursorFollower.style.top = e.clientY + 'px';
+        }, 100);
     });
-    element.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'scale(1)';
-        cursorFollower.style.transform = 'scale(1)';
+
+    // Add hover effect to clickable elements
+    const clickables = document.querySelectorAll('a, button, .skill-tag, .client-card');
+    clickables.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'scale(1.5)';
+            cursorFollower.style.transform = 'scale(2)';
+        });
+        element.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'scale(1)';
+            cursorFollower.style.transform = 'scale(1)';
+        });
     });
-});
+}
 
 // Theme Toggle
 const themeToggle = document.getElementById('theme-toggle');
@@ -52,16 +57,7 @@ function updateThemeIcon(theme) {
     }
 }
 
-// Smooth Scrolling for Navigation Links
-const navLinks = document.querySelectorAll('.nav-link');
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-});
+// Smooth Scrolling for Navigation Links (moved after navLinks declaration)
 
 // Navbar Background on Scroll
 const navbar = document.querySelector('.navbar');
@@ -82,10 +78,35 @@ window.addEventListener('scroll', () => {
 // Mobile Menu Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+const navLinks = document.querySelectorAll('.nav-link');
 
 hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
     hamburger.classList.toggle('active');
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+});
+
+// Close mobile menu when clicking on a nav link and smooth scroll
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Close mobile menu
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+        
+        // Smooth scroll to section
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        const navHeight = navbar.offsetHeight;
+        const targetPosition = targetSection.offsetTop - navHeight;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    });
 });
 
 // Intersection Observer for Fade In Animations
@@ -159,7 +180,7 @@ contactForm.addEventListener('submit', async (e) => {
     }
 });
 
-// Typing Effect for Hero Title
+// Typing Effect for Hero Title (adjusted for mobile)
 const heroTitle = document.querySelector('.hero-text h1');
 const text = heroTitle.textContent;
 heroTitle.textContent = '';
@@ -169,57 +190,28 @@ function typeWriter() {
     if (index < text.length) {
         heroTitle.textContent += text.charAt(index);
         index++;
-        setTimeout(typeWriter, 100);
+        // Faster typing on mobile for better UX
+        const delay = isMobile ? 50 : 100;
+        setTimeout(typeWriter, delay);
     }
 }
 
 // Start typing effect when page loads
 window.addEventListener('load', () => {
-    setTimeout(typeWriter, 500);
+    // Shorter delay on mobile
+    const initialDelay = isMobile ? 200 : 500;
+    setTimeout(typeWriter, initialDelay);
 });
 
-// Parallax Effect for Hero Background
-const heroBg = document.querySelector('.animated-bg');
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
-});
+// Parallax Effect for Hero Background (disabled on mobile for performance)
+if (!isMobile) {
+    const heroBg = document.querySelector('.animated-bg');
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+    });
+}
 
-// Add CSS for mobile menu
-const style = document.createElement('style');
-style.textContent = `
-    @media (max-width: 768px) {
-        .nav-menu {
-            position: fixed;
-            left: -100%;
-            top: 70px;
-            flex-direction: column;
-            background-color: var(--bg-color);
-            width: 100%;
-            text-align: center;
-            transition: 0.3s;
-            box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-            padding: 2rem 0;
-        }
-
-        .nav-menu.active {
-            left: 0;
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-    }
-`;
-document.head.appendChild(style);
 
 // Add names to form inputs
 document.querySelector('input[placeholder="Your Name"]').setAttribute('name', 'name');
