@@ -167,17 +167,46 @@ sections.forEach(section => {
     observer.observe(section);
 });
 
-// Contact Form Handler (Formspree handles the submission)
+// Contact Form Handler with AJAX (no page redirect)
 const contactForm = document.querySelector('.contact-form');
 const submitButton = contactForm.querySelector('button[type="submit"]');
 
-// Optional: Add loading state for better UX
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    
+    // Get form data
+    const formData = new FormData(contactForm);
+    
+    // Disable submit button and show loading
     submitButton.disabled = true;
     submitButton.textContent = 'Sending...';
     
-    // Formspree will handle the actual submission
-    // The button will reset when the page redirects or via AJAX
+    try {
+        // Submit to Formspree via AJAX
+        const response = await fetch('https://formspree.io/f/xblygbnn', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            // Success - show message and reset form
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        } else {
+            // Error - show message
+            alert('Oops! There was a problem sending your message. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to send message. Please try again later.');
+    } finally {
+        // Re-enable submit button
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Message';
+    }
 });
 
 // Typing Effect for Hero Title (adjusted for mobile)
