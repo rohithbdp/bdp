@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEVAPRIYA ROHITH BOLAMALA - Senior Software Engineer</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Senior Software Engineer and AWS Solutions Architect with 5+ years experience in distributed systems, Kubernetes, and cloud architecture.">
+    <meta name="keywords" content="Software Engineer, AWS Solutions Architect, Golang Developer, Cloud Engineer, Distributed Systems">
+    <meta name="author" content="Devapriya Rohith Bolamala">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Devapriya Rohith Bolamala - Senior Software Engineer">
+    <meta property="og:description" content="AWS Solutions Architect with expertise in distributed systems and cloud technologies">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rohithbdp.github.io">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50%' x='50%' text-anchor='middle' font-size='80' dy='.3em'>💻</text></svg>">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +26,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+    <script>
+        // Immediate scroll to top
+        window.scrollTo(0, 0);
+    </script>
+    <!-- Loading Animation -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-text">BDP</div>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+    
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar"></div>
+    
     <!-- Custom Cursor -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
@@ -26,7 +56,8 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#clients" class="nav-link">Clients</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="nav-actions">
@@ -50,11 +81,19 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="glitch" data-text="DEVAPRIYA ROHITH BOLAMALA">DEVAPRIYA ROHITH BOLAMALA</h1>
-                <h2 class="hero-subtitle">Senior Software Engineer</h2>
-                <p class="hero-description">Accomplished software engineer with expertise in full-stack development</p>
+                <h2 class="hero-subtitle">Senior Software Engineer | AWS Solutions Architect</h2>
+                <div class="current-position">
+                    <span class="position-badge">
+                        <i class="fas fa-briefcase"></i> Currently at ViewRail Holdings Inc
+                    </span>
+                </div>
+                <p class="hero-description">5+ years building platform software with expertise in container runtimes, Kubernetes, and distributed systems</p>
                 <div class="hero-cta">
                     <a href="#contact" class="btn btn-primary">Get In Touch</a>
                     <a href="#experience" class="btn btn-secondary">View My Work</a>
+                    <a href="resume.pdf" download="Rohith_Devapriya_Resume.pdf" class="btn btn-outline">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
                 </div>
             </div>
             <div class="hero-image">
@@ -79,11 +118,11 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p class="lead">Accomplished software engineer with expertise in full-stack development, including front-end and back-end technologies, database management, and cloud deployment.</p>
-                    <p>Experienced in all phases of the software development lifecycle (SDLC), from requirements gathering and design to implementation, testing, and deployment, using Agile and Scrum methodologies.</p>
+                    <p class="lead">Senior Software Engineer with around 5 years of experience building platform software using Go and C programming languages with deep expertise in container runtimes, Kubernetes, and distributed systems.</p>
+                    <p>Expert knowledge of Linux kernel internals, container orchestration systems, and cloud-native technologies. Strong background in DevOps automation using Ansible, Terraform, and CI/CD systems. Proven track record of designing and building high-performance, secure, and reliable distributed software for complex systems.</p>
                     <div class="about-stats">
                         <div class="stat">
-                            <h3>3+</h3>
+                            <h3>5+</h3>
                             <p>Years Experience</p>
                         </div>
                         <div class="stat">
@@ -111,56 +150,49 @@
             <h2 class="section-title">Technical Skills</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3><i class="fas fa-laptop-code"></i> Frontend</h3>
+                    <h3><i class="fas fa-code"></i> Languages</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Angular</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">Redux</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-server"></i> Backend</h3>
-                    <div class="skill-tags">
+                        <span class="skill-tag">Golang</span>
                         <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Go</span>
-                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
                         <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">Express.js</span>
-                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">Scala</span>
+                        <span class="skill-tag">C</span>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-database"></i> Database</h3>
+                    <h3><i class="fas fa-users"></i> Leadership</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MariaDB</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">SQL Server</span>
-                        <span class="skill-tag">Oracle</span>
-                        <span class="skill-tag">Redis</span>
-                        <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">Cassandra</span>
-                        <span class="skill-tag">DynamoDB</span>
+                        <span class="skill-tag">Team Management</span>
+                        <span class="skill-tag">Portfolio Leadership</span>
+                        <span class="skill-tag">Developer Mentoring</span>
+                        <span class="skill-tag">Engineering Community Leadership</span>
+                        <span class="skill-tag">People Management</span>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
+                    <h3><i class="fas fa-cloud"></i> Cloud & Infrastructure</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">AWS (2+ years)</span>
                         <span class="skill-tag">Microsoft Azure</span>
+                        <span class="skill-tag">Google Cloud</span>
                         <span class="skill-tag">Docker</span>
                         <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">Jenkins</span>
-                        <span class="skill-tag">GitHub Actions</span>
-                        <span class="skill-tag">Ansible</span>
-                        <span class="skill-tag">Puppet</span>
-                        <span class="skill-tag">Apache Kafka</span>
+                        <span class="skill-tag">CI/CD Pipelines</span>
+                        <span class="skill-tag">Infrastructure Automation</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-project-diagram"></i> Architecture & Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Distributed Microservices</span>
+                        <span class="skill-tag">Full Stack Systems</span>
+                        <span class="skill-tag">Open Source Frameworks</span>
+                        <span class="skill-tag">RDBMS</span>
+                        <span class="skill-tag">NoSQL Databases</span>
+                        <span class="skill-tag">SQL Optimization</span>
+                        <span class="skill-tag">High-volume Transaction Processing</span>
                     </div>
                 </div>
             </div>
@@ -176,46 +208,106 @@
                     <div class="timeline-date">Mar 2025 - Present</div>
                     <div class="timeline-content">
                         <h3>Senior Software Engineer</h3>
-                        <h4>Viewrail Holding Inc.</h4>
-                        <p>Developed gRPC-based SSO authentication service using Golang, designed and optimized MySQL database enhancing performance by 25%, and implemented CI/CD pipelines reducing release cycles by 60%.</p>
+                        <h4>ViewRail Holdings Inc, Dallas, TX</h4>
+                        <p>Design and implement full stack solutions using Go, Java, Python, and SQL to meet regulatory compliance requirements for financial institutions. Collaborate with digital product managers to deliver robust AWS cloud-based solutions driving financial empowerment for millions of users. Lead bank modernization initiatives using RDBMS and NoSQL databases while mentoring engineering community members.</p>
                         <div class="tech-stack">
                             <span>Golang</span>
-                            <span>gRPC</span>
-                            <span>MySQL</span>
+                            <span>Java</span>
+                            <span>Python</span>
+                            <span>AWS</span>
                             <span>Docker</span>
                             <span>Kubernetes</span>
+                            <span>SQL/NoSQL</span>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">Nov 2023 - Dec 2024</div>
+                    <div class="timeline-date">Nov 2023 - Jan 2025</div>
                     <div class="timeline-content">
                         <h3>Software Developer</h3>
-                        <h4>Optum</h4>
-                        <p>Architected Background check API using Reactive Microservices with Golang, designed MySQL database with 25% performance optimization, and achieved 95% test coverage reducing bugs by 40%.</p>
+                        <h4>Optum, Caldwell, NJ</h4>
+                        <p>Led development team building enterprise-grade distributed microservices using Golang, Java, and Python on AWS cloud infrastructure. Designed full stack system frameworks for healthcare financial technology serving millions of customers. Managed cross-functional teams in Agile practices, mentoring developers and driving technology transformation.</p>
                         <div class="tech-stack">
                             <span>Golang</span>
-                            <span>ReactJS</span>
-                            <span>MySQL</span>
+                            <span>Java</span>
+                            <span>Python</span>
                             <span>AWS</span>
                             <span>Docker</span>
+                            <span>Kubernetes</span>
+                            <span>Microservices</span>
                         </div>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">Jul 2022 - Dec 2022</div>
+                    <div class="timeline-date">Jul 2022 - Oct 2023</div>
                     <div class="timeline-content">
                         <h3>Software Developer</h3>
-                        <h4>Amway</h4>
-                        <p>Developed robust back-end Java solutions on AWS improving reliability by 30%, created Angular front-end features, and managed projects using JIRA reducing completion time by 15%.</p>
+                        <h4>Amway, Jersey City, NJ</h4>
+                        <p>Built full stack solutions with open source frameworks, managing regulatory compliance for payment processing and financial data. Implemented AWS cloud computing solutions with Docker and Kubernetes for financial technology platform deployment. Led small development teams using Agile practices, mentoring junior engineers.</p>
                         <div class="tech-stack">
+                            <span>Golang</span>
                             <span>Java</span>
-                            <span>Angular</span>
-                            <span>Spring Boot</span>
+                            <span>Python</span>
                             <span>AWS</span>
-                            <span>Kafka</span>
+                            <span>Docker</span>
+                            <span>Kubernetes</span>
+                            <span>SQL/NoSQL</span>
                         </div>
                     </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2020 - Jul 2021</div>
+                    <div class="timeline-content">
+                        <h3>Software Developer</h3>
+                        <h4>Impetus, Hyderabad, INDIA</h4>
+                        <p>Developed backend systems using Golang, Java, and Python with focus on distributed architecture and cloud computing solutions. Gained expertise in AWS cloud services and container orchestration technologies. Implemented SQL and NoSQL database solutions for enterprise applications with emphasis on scalability and performance.</p>
+                        <div class="tech-stack">
+                            <span>Golang</span>
+                            <span>Java</span>
+                            <span>Python</span>
+                            <span>AWS</span>
+                            <span>SQL/NoSQL</span>
+                            <span>Cloud Computing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-content">
+                <div class="education-item">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-details">
+                        <h3>Master of Science in Informatics</h3>
+                        <h4>Northeastern University</h4>
+                        <p>Boston, MA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications & Achievements</h2>
+            <div class="certifications-grid">
+                <div class="certification-card">
+                    <div class="cert-icon">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <h3>AWS Certified Solutions Architect - Associate</h3>
+                    <p>Validated expertise in designing distributed applications and systems on AWS platform</p>
+                    <a href="https://www.credly.com/badges/d97f694a-0028-40db-9792-a8d937410bdd/linked_in_profile" target="_blank" class="cert-link">
+                        <i class="fas fa-external-link-alt"></i> View Credential
+                    </a>
                 </div>
             </div>
         </div>
@@ -264,6 +356,15 @@
                     <h3>Amway</h3>
                     <p>E-commerce Platform Development</p>
                 </div>
+                <div class="client-card">
+                    <div class="client-logo">
+                        <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                            <text x="200" y="100" font-family="Arial, sans-serif" font-size="70" font-weight="bold" text-anchor="middle" fill="#2E86AB">IMPETUS</text>
+                        </svg>
+                    </div>
+                    <h3>Impetus</h3>
+                    <p>Enterprise Software Solutions</p>
+                </div>
             </div>
         </div>
     </section>
@@ -279,11 +380,11 @@
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:bolamalarohith@gmail.com">bolamalarohith@gmail.com</a>
+                            <a href="mailto:rbolamala@gmail.com">rbolamala@gmail.com</a>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <a href="tel:+16177495941">+1 (617) 749-5941</a>
+                            <a href="tel:+12145068251">+1 (214) 506-8251</a>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -293,7 +394,7 @@
                     <div class="social-links">
                         <a href="https://www.linkedin.com/in/rbolamala/" target="_blank"><i class="fab fa-linkedin"></i></a>
                         <a href="https://github.com/rohithbdp" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="mailto:bolamalarohith@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="mailto:rbolamala@gmail.com"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <form class="contact-form">

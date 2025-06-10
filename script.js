@@ -1,3 +1,37 @@
+// Loading Animation
+window.addEventListener('load', () => {
+    // Scroll to top on page load
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    const loader = document.querySelector('.loader-wrapper');
+    setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 500);
+    }, 1500);
+});
+
+// Scroll Progress Bar
+window.addEventListener('scroll', () => {
+    const progressBar = document.querySelector('.progress-bar');
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (window.scrollY / scrollHeight) * 100;
+    progressBar.style.width = scrolled + '%';
+});
+
+// Force scroll to top on initial page load
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+
+// Remove any hash from URL on load to prevent auto-scrolling
+if (window.location.hash) {
+    window.location.hash = '';
+}
+
 // Check if device is mobile
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 
@@ -217,3 +251,40 @@ if (!isMobile) {
 document.querySelector('input[placeholder="Your Name"]').setAttribute('name', 'name');
 document.querySelector('input[placeholder="Your Email"]').setAttribute('name', 'email');
 document.querySelector('textarea[placeholder="Your Message"]').setAttribute('name', 'message');
+
+// Force download of resume
+document.addEventListener('DOMContentLoaded', function() {
+    const resumeLink = document.querySelector('a[download="Rohith_Devapriya_Resume.pdf"]');
+    if (resumeLink) {
+        resumeLink.addEventListener('click', async function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            try {
+                // Fetch the PDF file
+                const response = await fetch('resume.pdf');
+                const blob = await response.blob();
+                
+                // Create a blob URL
+                const url = window.URL.createObjectURL(blob);
+                
+                // Create a temporary link and trigger download
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Rohith_Devapriya_Resume.pdf';
+                document.body.appendChild(a);
+                a.click();
+                
+                // Cleanup
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } catch (error) {
+                console.error('Download failed:', error);
+                // Fallback to normal download
+                window.location.href = 'resume.pdf';
+            }
+            
+            return false;
+        });
+    }
+});
