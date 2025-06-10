@@ -167,15 +167,18 @@ sections.forEach(section => {
     observer.observe(section);
 });
 
-// Contact Form Handler - Ensure it's loaded after DOM
+// Contact Form Handler - Button click instead of form submit
 document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        const submitButton = contactForm.querySelector('button[type="submit"]');
-        
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault(); // Prevent redirect
-            e.stopPropagation(); // Stop event bubbling
+    const submitButton = document.getElementById('submit-btn');
+    const contactForm = document.getElementById('contact-form');
+    
+    if (submitButton && contactForm) {
+        submitButton.addEventListener('click', async function() {
+            // Check form validity
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity();
+                return;
+            }
             
             // Get form data
             const formData = new FormData(contactForm);
