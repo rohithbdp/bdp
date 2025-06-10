@@ -167,45 +167,50 @@ sections.forEach(section => {
     observer.observe(section);
 });
 
-// Contact Form Handler with AJAX (no page redirect)
-const contactForm = document.querySelector('.contact-form');
-const submitButton = contactForm.querySelector('button[type="submit"]');
-
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent default form submission
-    
-    // Get form data
-    const formData = new FormData(contactForm);
-    
-    // Disable submit button and show loading
-    submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
-    
-    try {
-        // Submit to Formspree via AJAX
-        const response = await fetch('https://formspree.io/f/xblygbnn', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
+// Contact Form Handler - Ensure it's loaded after DOM
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Prevent redirect
+            e.stopPropagation(); // Stop event bubbling
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            
+            // Disable submit button and show loading
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            
+            try {
+                // Submit to Formspree via AJAX
+                const response = await fetch('https://formspree.io/f/xblygbnn', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success - show message and reset form
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                } else {
+                    // Error - show message
+                    alert('Oops! There was a problem sending your message. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to send message. Please try again later.');
+            } finally {
+                // Re-enable submit button
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
             }
         });
-        
-        if (response.ok) {
-            // Success - show message and reset form
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
-        } else {
-            // Error - show message
-            alert('Oops! There was a problem sending your message. Please try again.');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to send message. Please try again later.');
-    } finally {
-        // Re-enable submit button
-        submitButton.disabled = false;
-        submitButton.textContent = 'Send Message';
     }
 });
 
@@ -242,10 +247,17 @@ if (!isMobile) {
 }
 
 
-// Add names to form inputs
-document.querySelector('input[placeholder="Your Name"]').setAttribute('name', 'name');
-document.querySelector('input[placeholder="Your Email"]').setAttribute('name', 'email');
-document.querySelector('textarea[placeholder="Your Message"]').setAttribute('name', 'message');
+// Wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Add names to form inputs (already in HTML now, but keeping for safety)
+    const nameInput = document.querySelector('input[placeholder="Your Name"]');
+    const emailInput = document.querySelector('input[placeholder="Your Email"]');
+    const messageInput = document.querySelector('textarea[placeholder="Your Message"]');
+    
+    if (nameInput && !nameInput.name) nameInput.setAttribute('name', 'name');
+    if (emailInput && !emailInput.name) emailInput.setAttribute('name', 'email');
+    if (messageInput && !messageInput.name) messageInput.setAttribute('name', 'message');
+});
 
 // Force download of resume
 document.addEventListener('DOMContentLoaded', function() {
