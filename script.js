@@ -167,51 +167,17 @@ sections.forEach(section => {
     observer.observe(section);
 });
 
-// Contact Form Handler
+// Contact Form Handler (Formspree handles the submission)
 const contactForm = document.querySelector('.contact-form');
 const submitButton = contactForm.querySelector('button[type="submit"]');
 
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    // Get form values
-    const formData = new FormData(contactForm);
-    const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        message: formData.get('message')
-    };
-    
-    // Disable submit button and show loading
+// Optional: Add loading state for better UX
+contactForm.addEventListener('submit', (e) => {
     submitButton.disabled = true;
     submitButton.textContent = 'Sending...';
     
-    try {
-        // Backend URL
-        const response = await fetch('https://bdp-feqa.onrender.com/api/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
-        
-        const result = await response.json();
-        
-        if (response.ok) {
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
-        } else {
-            alert('Failed to send message. Please try again.');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to send message. Please try again later.');
-    } finally {
-        // Re-enable submit button
-        submitButton.disabled = false;
-        submitButton.textContent = 'Send Message';
-    }
+    // Formspree will handle the actual submission
+    // The button will reset when the page redirects or via AJAX
 });
 
 // Typing Effect for Hero Title (adjusted for mobile)
