@@ -174,14 +174,28 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (submitButton && contactForm) {
         submitButton.addEventListener('click', async function() {
-            // Check form validity
-            if (!contactForm.checkValidity()) {
-                contactForm.reportValidity();
+            // Manual validation since it's not a form anymore
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
                 return;
             }
             
-            // Get form data
-            const formData = new FormData(contactForm);
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Create form data manually
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('message', message);
             
             // Disable submit button and show loading
             submitButton.disabled = true;
