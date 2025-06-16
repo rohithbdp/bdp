@@ -10,8 +10,8 @@ window.addEventListener('load', () => {
         loader.style.opacity = '0';
         setTimeout(() => {
             loader.style.display = 'none';
-        }, 300);
-    }, 800);
+        }, 200);
+    }, 400);
 });
 
 // Scroll Progress Bar - Removed
@@ -272,14 +272,7 @@ window.addEventListener('load', () => {
     setTimeout(typeWriter, initialDelay);
 });
 
-// Parallax Effect for Hero Background (disabled on mobile for performance)
-if (!isMobile) {
-    const heroBg = document.querySelector('.animated-bg');
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
-    });
-}
+// Parallax Effect - Removed for better performance
 
 
 // Wait for DOM to be ready
