@@ -14,13 +14,7 @@ window.addEventListener('load', () => {
     }, 800);
 });
 
-// Scroll Progress Bar
-window.addEventListener('scroll', () => {
-    const progressBar = document.querySelector('.progress-bar');
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled = (window.scrollY / scrollHeight) * 100;
-    progressBar.style.width = scrolled + '%';
-});
+// Scroll Progress Bar - Removed
 
 // Force scroll to top on initial page load
 if (history.scrollRestoration) {
@@ -231,6 +225,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Mobile touch interactions for skill tags and tech badges
+if (isMobile) {
+    const interactiveElements = document.querySelectorAll('.skill-tag, .tech-badge');
+    
+    interactiveElements.forEach(element => {
+        element.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.classList.add('touched');
+        });
+        
+        element.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            setTimeout(() => {
+                this.classList.remove('touched');
+            }, 500);
+        });
+        
+        element.addEventListener('touchmove', function(e) {
+            this.classList.remove('touched');
+        });
+    });
+}
 
 // Typing Effect for Hero Title (adjusted for mobile)
 const heroTitle = document.querySelector('.hero-text h1');

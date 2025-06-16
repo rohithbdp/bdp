@@ -582,11 +582,35 @@ section {
     background: var(--primary-color);
     color: white;
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
 }
 
 .skill-tag:hover::before {
     left: 100%;
+}
+
+/* Touch state for mobile */
+.skill-tag.touched {
+    background: var(--primary-color) !important;
+    color: white !important;
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3) !important;
+}
+
+.tech-badge.touched {
+    transform: translateY(-5px) !important;
+    box-shadow: var(--shadow-lg) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.tech-badge.touched i,
+.tech-badge.touched .go-icon {
+    color: var(--secondary-color) !important;
+    transform: scale(1.1) !important;
+}
+
+.tech-badge.touched span {
+    color: var(--text-primary) !important;
 }
 
 /* Experience Section */
@@ -694,16 +718,18 @@ section {
     display: flex;
     align-items: center;
     gap: 2rem;
-    background: var(--surface-color);
+    background: var(--surface-light);
     padding: 2rem 3rem;
-    border-radius: 20px;
+    border-radius: 12px;
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
 }
 
 .education-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.1);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
 }
 
 .education-icon {
@@ -1043,6 +1069,7 @@ section {
     
     .tech-badge {
         padding: 1.5rem 1rem;
+        -webkit-tap-highlight-color: transparent;
     }
     
     .tech-badge i {
@@ -1119,6 +1146,15 @@ section {
     .skill-tag {
         font-size: 0.8rem;
         padding: 0.4rem 0.8rem;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Remove hover on mobile - use JS instead */
+    .skill-tag:hover {
+        background: rgba(14, 165, 233, 0.08);
+        color: var(--primary-color);
+        transform: none;
+        box-shadow: none;
     }
 
     /* Timeline Mobile */
@@ -1344,6 +1380,12 @@ section {
         font-size: 0.75rem;
         padding: 0.35rem 0.7rem;
     }
+    
+    .skill-tag:hover {
+        background: rgba(14, 165, 233, 0.08);
+        color: var(--primary-color);
+        transform: none;
+    }
 
     .timeline-date {
         font-size: 0.75rem;
@@ -1368,6 +1410,7 @@ section {
     
     .tech-badge {
         padding: 1.25rem 0.75rem;
+        -webkit-tap-highlight-color: transparent;
     }
     
     .tech-badge i {
@@ -1452,17 +1495,7 @@ section {
     }
 }
 
-/* Scroll Progress Bar */
-.progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    background: var(--gradient-1);
-    z-index: 10000;
-    transition: width 0.3s ease;
-    width: 0%;
-}
+/* Scroll Progress Bar - Removed for cleaner design */
 
 /* Loading Animation */
 .loader-wrapper {
