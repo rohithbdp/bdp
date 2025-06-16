@@ -52,12 +52,12 @@ body {
     overflow-x: hidden;
     line-height: 1.6;
     font-weight: 400;
+    cursor: auto;
 }
 
-/* Custom Cursor - Removed for better UX */
-.cursor,
-.cursor-follower {
-    display: none;
+/* Ensure proper cursors for interactive elements */
+a, button, .skill-tag, .client-card, .tech-badge, .nav-link, .social-links a, .cert-link {
+    cursor: pointer;
 }
 
 /* Navigation */
@@ -149,7 +149,7 @@ body {
     border-radius: 50px;
     width: 60px;
     height: 30px;
-    cursor: pointer;
+    cursor: pointer !important;
     padding: 3px;
     transition: all 0.3s ease;
     position: relative;
@@ -185,7 +185,7 @@ body {
 .hamburger {
     display: none;
     flex-direction: column;
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .hamburger span {
@@ -395,6 +395,12 @@ body {
     color: var(--primary-color);
 }
 
+.go-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
 .tech-badge span {
     font-size: 0.9rem;
     font-weight: 600;
@@ -408,43 +414,20 @@ body {
 }
 
 .tech-badge:hover i {
-    color: var(--accent-color);
+    color: var(--secondary-color);
     transform: scale(1.1);
 }
 
-.scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+.tech-badge:hover .go-icon {
+    color: var(--secondary-color);
+    transform: scale(1.1);
 }
 
-.scroll-indicator span {
-    display: block;
-    width: 30px;
-    height: 50px;
-    border: 2px solid var(--primary-color);
-    border-radius: 25px;
-    position: relative;
+.tech-badge:hover span {
+    color: var(--text-primary);
 }
 
-.scroll-indicator span::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    margin-left: -3px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    animation: scroll 2s infinite;
-}
-
-@keyframes scroll {
-    0% { opacity: 1; top: 10px; }
-    100% { opacity: 0; top: 30px; }
-}
+/* Scroll indicator removed for cleaner design */
 
 /* Sections */
 section {
@@ -580,7 +563,6 @@ section {
     font-weight: 500;
     transition: all 0.2s ease;
     border: 1px solid transparent;
-    cursor: default;
     position: relative;
     overflow: hidden;
 }
@@ -1067,6 +1049,11 @@ section {
         font-size: 2rem;
     }
     
+    .go-logo {
+        width: 2rem;
+        height: 2rem;
+    }
+    
     .tech-badge span {
         font-size: 0.8rem;
     }
@@ -1315,15 +1302,6 @@ section {
         font-size: 12px;
     }
 
-    /* Disable custom cursor on mobile */
-    .cursor,
-    .cursor-follower {
-        display: none;
-    }
-
-    body {
-        cursor: auto;
-    }
 }
 
 /* Fix horizontal scrolling on mobile */
@@ -1394,6 +1372,11 @@ section {
     
     .tech-badge i {
         font-size: 1.75rem;
+    }
+    
+    .go-logo {
+        width: 1.75rem;
+        height: 1.75rem;
     }
     
     .tech-badge span {
@@ -1838,9 +1821,4 @@ section {
         width: 100%;
     }
     
-    /* Hide custom cursor on mobile */
-    .cursor,
-    .cursor-follower {
-        display: none;
-    }
 }
