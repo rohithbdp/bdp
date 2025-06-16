@@ -10,8 +10,8 @@ window.addEventListener('load', () => {
         loader.style.opacity = '0';
         setTimeout(() => {
             loader.style.display = 'none';
-        }, 500);
-    }, 1500);
+        }, 300);
+    }, 800);
 });
 
 // Scroll Progress Bar
@@ -35,39 +35,28 @@ if (window.location.hash) {
 // Check if device is mobile
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 
-// Custom Cursor (only for desktop)
-if (!isMobile) {
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
+// Get navbar element first
+const navbar = document.querySelector('.navbar');
 
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        setTimeout(() => {
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-        }, 100);
-    });
-
-    // Add hover effect to clickable elements
-    const clickables = document.querySelectorAll('a, button, .skill-tag, .client-card');
-    clickables.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'scale(1.5)';
-            cursorFollower.style.transform = 'scale(2)';
-        });
-        element.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'scale(1)';
-            cursorFollower.style.transform = 'scale(1)';
-        });
-    });
+// Function to update navbar background
+function updateNavbarBackground() {
+    const scrolled = window.scrollY > 100;
+    
+    // Remove inline styles to let CSS handle it
+    navbar.style.background = '';
+    navbar.style.boxShadow = '';
+    
+    if (scrolled) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
 }
 
 // Theme Toggle
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
-const icon = themeToggle.querySelector('i');
+const toggleIcon = themeToggle.querySelector('.toggle-icon');
 
 // Check for saved theme preference
 const currentTheme = localStorage.getItem('theme') || 'dark';
@@ -79,35 +68,24 @@ themeToggle.addEventListener('click', () => {
     body.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
     updateThemeIcon(theme);
+    // No need to call updateNavbarBackground as CSS handles it automatically
 });
 
 function updateThemeIcon(theme) {
     if (theme === 'dark') {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
+        // In dark mode, show sun emoji
+        toggleIcon.textContent = '☀️';
     } else {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+        // In light mode, show moon emoji
+        toggleIcon.textContent = '🌙';
     }
 }
 
-// Smooth Scrolling for Navigation Links (moved after navLinks declaration)
+// Update navbar on scroll
+window.addEventListener('scroll', updateNavbarBackground);
 
-// Navbar Background on Scroll
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        navbar.style.background = body.getAttribute('data-theme') === 'dark' 
-            ? 'rgba(10, 10, 10, 0.95)' 
-            : 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.background = body.getAttribute('data-theme') === 'dark' 
-            ? 'rgba(10, 10, 10, 0.8)' 
-            : 'rgba(255, 255, 255, 0.8)';
-        navbar.style.boxShadow = 'none';
-    }
-});
+// Initial navbar background
+updateNavbarBackground();
 
 // Mobile Menu Toggle
 const hamburger = document.querySelector('.hamburger');
