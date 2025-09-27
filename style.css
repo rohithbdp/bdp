@@ -1848,3 +1848,135 @@ section {
     }
     
 }
+
+/* Beyond Code Section */
+.beyond-code {
+    padding: 5rem 0;
+    background: var(--surface-color);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.movie-card {
+    background: var(--surface-light);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    position: relative;
+    cursor: pointer;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
+}
+
+.movie-poster {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    background: var(--surface-color);
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.3s ease;
+    display: block;
+    background: var(--surface-color);
+}
+
+.movie-card:hover .movie-poster img {
+    transform: scale(1.05);
+}
+
+.movie-info {
+    padding: 1.5rem;
+    background: var(--gradient-dark);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.3s ease;
+}
+
+.movie-info h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.movie-year {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.movie-quote {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.movie-card:hover .movie-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.movie-card:hover .movie-quote {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .movies-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .movie-poster {
+        height: 350px;
+    }
+    
+    .movie-info {
+        padding: 1rem;
+    }
+    
+    .movie-quote {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
