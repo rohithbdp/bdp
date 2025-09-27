@@ -1873,13 +1873,18 @@ section {
 }
 
 .movie-card {
-    background: var(--surface-light);
-    border-radius: 12px;
+    background: transparent;
+    border-radius: 0;
     overflow: hidden;
     transition: all 0.3s ease;
-    border: 1px solid var(--border-color);
+    border: none;
     position: relative;
     cursor: pointer;
+    display: block;
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
 }
 
 .movie-card:hover {
@@ -1891,23 +1896,23 @@ section {
 .movie-poster {
     position: relative;
     width: 100%;
-    height: 450px;
+    height: 400px;
     overflow: hidden;
-    background: var(--surface-color);
-    border-radius: 8px 8px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .movie-poster img {
     width: 100%;
-    height: 100%;
+    height: 400px;
     object-fit: contain;
     object-position: center;
-    transition: transform 0.3s ease;
     display: block;
-    background: var(--surface-color);
+    transition: transform 0.3s ease;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
 }
 
 .movie-card:hover .movie-poster img {
@@ -1925,6 +1930,7 @@ section {
     opacity: 0;
     transform: translateY(100%);
     transition: all 0.3s ease;
+    pointer-events: none;
 }
 
 .movie-info h3 {
@@ -1963,12 +1969,16 @@ section {
 
 @media (max-width: 768px) {
     .movies-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
     
     .movie-poster {
-        height: 350px;
+        height: 300px;
+    }
+    
+    .movie-poster img {
+        height: 300px;
     }
     
     .movie-info {
@@ -1976,6 +1986,40 @@ section {
     }
     
     .movie-quote {
+        opacity: 1;
+        transform: translateY(0);
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .movies-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .movie-poster {
+        height: 400px;
+    }
+    
+    .movie-poster img {
+        height: 400px;
+    }
+    
+    .movie-info {
+        padding: 0.8rem;
+    }
+    
+    .movie-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .movie-year {
+        font-size: 0.8rem;
+    }
+    
+    .movie-quote {
+        font-size: 0.8rem;
         opacity: 1;
         transform: translateY(0);
     }
