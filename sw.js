@@ -1,11 +1,11 @@
-const CACHE_NAME = 'bdp-portfolio-v1';
+const CACHE_NAME = 'bdp-portfolio-v3';
 const urlsToCache = [
   '/',
   '/index.html',
   '/style.css',
   '/script.js',
   '/manifest.json',
-  '/icon.svg',
+  '/app-icon.png',
   '/devapriya-rohith.png',
   '/profile-photo-optimized.jpg',
   '/resume.pdf',
