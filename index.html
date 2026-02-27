@@ -24,6 +24,14 @@
     <link rel="icon" type="image/x-icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50%' x='50%' text-anchor='middle' font-size='80' dy='.3em'>💻</text></svg>">
 
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0ea5e9">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BDP">
+    <link rel="apple-touch-icon" href="devapriya-rohith.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style"
@@ -109,6 +117,9 @@
                 </div>
             </div>
             <div class="hero-image">
+                <div class="hero-photo-wrapper">
+                    <img src="devapriya-rohith.png" alt="Devapriya Rohith Bolamala" class="hero-profile-img">
+                </div>
                 <div class="tech-stack-visual">
                     <div class="tech-badge">
                         <i class="fab fa-golang"></i>
@@ -199,7 +210,8 @@
                 <div class="skill-category">
                     <h3><i class="fas fa-cloud"></i> Cloud & Infrastructure</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">AWS (2+ years)</span>
+                        <span class="skill-tag">AWS (daily)</span>
+                        <span class="skill-tag">Terraform</span>
                         <span class="skill-tag">Microsoft Azure</span>
                         <span class="skill-tag">Google Cloud</span>
                         <span class="skill-tag">Docker</span>
@@ -212,12 +224,23 @@
                     <h3><i class="fas fa-project-diagram"></i> Architecture & Databases</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Distributed Microservices</span>
-                        <span class="skill-tag">Full Stack Systems</span>
-                        <span class="skill-tag">Open Source Frameworks</span>
+                        <span class="skill-tag">Cloud-native Microservices</span>
+                        <span class="skill-tag">Redis</span>
                         <span class="skill-tag">RDBMS</span>
                         <span class="skill-tag">NoSQL Databases</span>
                         <span class="skill-tag">SQL Optimization</span>
                         <span class="skill-tag">High-volume Transaction Processing</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-heartbeat"></i> Healthcare & EDI</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ANSI X12 EDI</span>
+                        <span class="skill-tag">Healthcare Claims</span>
+                        <span class="skill-tag">ERA/Remittance</span>
+                        <span class="skill-tag">TIBCO</span>
+                        <span class="skill-tag">IMN Batch Platform</span>
+                        <span class="skill-tag">Clearinghouse Systems</span>
                     </div>
                 </div>
             </div>
@@ -584,11 +607,16 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 DEVAPRIYA ROHITH BOLAMALA. All rights reserved.</p>
+            <p>&copy; 2026 DEVAPRIYA ROHITH BOLAMALA. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
 </body>
 
 </html>
