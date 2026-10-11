@@ -1,14 +1,19 @@
 {
-  "name": "Rohith BDP - Portfolio",
-  "short_name": "BDP",
-  "description": "Senior Software Engineer & AWS Solutions Architect",
-  "start_url": "/bdp/",
-  "scope": "/bdp/",
+  "name": "Rohith Bolamala — Software Engineer",
+  "short_name": "Rohith",
+  "description": "Cloud platforms, distributed systems, and healthcare technology. Based in Livonia, MI.",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#0ea5e9",
-  "orientation": "portrait-primary",
+  "background_color": "#f5f3ed",
+  "theme_color": "#f5f3ed",
   "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
     {
       "src": "app-icon.png",
       "sizes": "512x512",

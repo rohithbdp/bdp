@@ -1,325 +1,227 @@
-// Loading Animation
-window.addEventListener('load', () => {
-    // Scroll to top on page load
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    
-    const loader = document.querySelector('.loader-wrapper');
-    setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 200);
-    }, 400);
-});
+"use strict";
 
-// Scroll Progress Bar - Removed
-
-// Force scroll to top on initial page load
-if (history.scrollRestoration) {
-    history.scrollRestoration = 'manual';
-}
-
-// Remove any hash from URL on load to prevent auto-scrolling
-if (window.location.hash) {
-    window.location.hash = '';
-}
-
-// Check if device is mobile
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
-
-// Get navbar element first
-const navbar = document.querySelector('.navbar');
-
-// Function to update navbar background
-function updateNavbarBackground() {
-    const scrolled = window.scrollY > 100;
-    
-    // Remove inline styles to let CSS handle it
-    navbar.style.background = '';
-    navbar.style.boxShadow = '';
-    
-    if (scrolled) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-}
-
-// Theme Toggle
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-const toggleIcon = themeToggle.querySelector('.toggle-icon');
-
-// Check for saved theme preference
-const currentTheme = localStorage.getItem('theme') || 'dark';
-body.setAttribute('data-theme', currentTheme);
-updateThemeIcon(currentTheme);
-
-themeToggle.addEventListener('click', () => {
-    const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    body.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    updateThemeIcon(theme);
-    // No need to call updateNavbarBackground as CSS handles it automatically
-});
-
-function updateThemeIcon(theme) {
-    if (theme === 'dark') {
-        // In dark mode, show sun emoji
-        toggleIcon.textContent = '☀️';
-    } else {
-        // In light mode, show moon emoji
-        toggleIcon.textContent = '🌙';
-    }
-}
-
-// Update navbar on scroll
-window.addEventListener('scroll', updateNavbarBackground);
-
-// Initial navbar background
-updateNavbarBackground();
-
-// Mobile Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
-
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-});
-
-// Close mobile menu when clicking on a nav link and smooth scroll
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        // Close mobile menu
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-        document.body.style.overflow = '';
-        
-        // Smooth scroll to section
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        const navHeight = navbar.offsetHeight;
-        const targetPosition = targetSection.offsetTop - navHeight;
-        
+// Undo the former site's manual restoration setting and respect shared section URLs.
+history.scrollRestoration = "auto";
+window.addEventListener("pageshow", () => {
+  if (!location.hash) return;
+  try {
+    const target = document.getElementById(
+      decodeURIComponent(location.hash.slice(1)),
+    );
+    if (target)
+      requestAnimationFrame(() => {
+        const headerHeight =
+          document.querySelector(".site-header").offsetHeight;
         window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
+          top:
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            headerHeight -
+            24,
+          behavior: "instant",
         });
-    });
+      });
+  } catch (error) {
+    /* An invalid fragment should not interrupt the page. */
+  }
 });
 
-// Intersection Observer for Fade In Animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+const root = document.documentElement;
+const themeButton = document.querySelector(".theme-toggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Apply observer to sections
-const sections = document.querySelectorAll('section');
-sections.forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(30px)';
-    section.style.transition = 'all 0.6s ease';
-    observer.observe(section);
+function setTheme(dark) {
+  root.dataset.theme = dark ? "dark" : "light";
+  themeButton.setAttribute(
+    "aria-label",
+    dark ? "Switch to light theme" : "Switch to dark theme",
+  );
+  themeButton.setAttribute("aria-pressed", String(dark));
+  themeColor.content = dark ? "#13252c" : "#f5f3ed";
+}
+setTheme(root.dataset.theme === "dark");
+themeButton.addEventListener("click", () => {
+  const dark = root.dataset.theme !== "dark";
+  setTheme(dark);
+  try {
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  } catch (error) {
+    /* Theme still works without storage. */
+  }
+});
+systemTheme.addEventListener("change", (event) => {
+  try {
+    if (localStorage.getItem("theme")) return;
+  } catch (error) {
+    /* Follow system preference. */
+  }
+  setTheme(event.matches);
 });
 
-// Contact Form Handler - Button click instead of form submit
-document.addEventListener('DOMContentLoaded', function() {
-    const submitButton = document.getElementById('submit-btn');
-    const contactForm = document.getElementById('contact-form');
-    
-    if (submitButton && contactForm) {
-        submitButton.addEventListener('click', async function() {
-            // Manual validation since it's not a form anymore
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            if (!name || !email || !message) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address');
-                return;
-            }
-            
-            // Create form data manually
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('message', message);
-            
-            // Disable submit button and show loading
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-            
-            try {
-                // Submit to Formspree via AJAX
-                const response = await fetch('https://formspree.io/f/xblygbnn', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    },
-                    mode: 'cors'
-                });
-                
-                if (response.ok) {
-                    // Success - show message and reset form
-                    alert('Thank you for your message! I will get back to you soon.');
-                    // Clear the form fields manually
-                    document.getElementById('name').value = '';
-                    document.getElementById('email').value = '';
-                    document.getElementById('message').value = '';
-                } else {
-                    // Check if it's actually successful (Formspree returns 200 even with CORS)
-                    const data = await response.json().catch(() => null);
-                    if (response.status === 200 || response.status === 201) {
-                        alert('Thank you for your message! I will get back to you soon.');
-                        // Clear the form fields
-                        document.getElementById('name').value = '';
-                        document.getElementById('email').value = '';
-                        document.getElementById('message').value = '';
-                    } else {
-                        alert('Oops! There was a problem sending your message. Please try again.');
-                    }
-                }
-            } catch (error) {
-                // Check if it's a CORS error but the message was still sent
-                if (error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
-                    // Assume success if CORS error (Formspree often sends despite CORS)
-                    alert('Thank you for your message! I will get back to you soon.');
-                    // Clear the form fields
-                    document.getElementById('name').value = '';
-                    document.getElementById('email').value = '';
-                    document.getElementById('message').value = '';
-                } else {
-                    console.error('Error:', error);
-                    alert('Failed to send message. Please try again later.');
-                }
-            } finally {
-                // Re-enable submit button
-                submitButton.disabled = false;
-                submitButton.textContent = 'Send Message';
-            }
-        });
+const menuButton = document.querySelector(".menu-toggle");
+const navigation = document.querySelector("#navigation");
+function setMenu(open, restoreFocus = false) {
+  navigation.classList.toggle("is-open", open);
+  menuButton.setAttribute("aria-expanded", String(open));
+  menuButton.setAttribute(
+    "aria-label",
+    open ? "Close navigation" : "Open navigation",
+  );
+  if (restoreFocus) menuButton.focus();
+}
+menuButton.addEventListener("click", () =>
+  setMenu(menuButton.getAttribute("aria-expanded") !== "true"),
+);
+navigation.addEventListener("click", (event) => {
+  const link = event.target.closest("a");
+  if (!link) return;
+  const wasOpen = menuButton.getAttribute("aria-expanded") === "true";
+  setMenu(false);
+  // Keep keyboard focus on the destination when the mobile link is hidden.
+  if (wasOpen && link.hash) {
+    const target = document.getElementById(link.hash.slice(1));
+    if (target) {
+      target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
     }
+  }
+});
+document.addEventListener("keydown", (event) => {
+  if (
+    event.key === "Escape" &&
+    menuButton.getAttribute("aria-expanded") === "true"
+  )
+    setMenu(false, true);
+});
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".site-header")) setMenu(false);
+});
+window.matchMedia("(min-width: 651px)").addEventListener("change", (event) => {
+  if (event.matches) setMenu(false);
 });
 
-// Mobile touch interactions for skill tags and tech badges
-if (isMobile) {
-    const interactiveElements = document.querySelectorAll('.skill-tag, .tech-badge');
-    
-    interactiveElements.forEach(element => {
-        element.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            this.classList.add('touched');
-        });
-        
-        element.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            setTimeout(() => {
-                this.classList.remove('touched');
-            }, 500);
-        });
-        
-        element.addEventListener('touchmove', function(e) {
-            this.classList.remove('touched');
-        });
-    });
+const navLinks = [...navigation.querySelectorAll("a")];
+const navSections = navLinks
+  .map((link) => document.querySelector(link.hash))
+  .filter(Boolean);
+if ("IntersectionObserver" in window) {
+  const visible = new Map();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) =>
+        visible.set(entry.target.id, entry.isIntersecting),
+      );
+      const active = navSections.find((section) => visible.get(section.id));
+      navLinks.forEach((link) => {
+        if (active && link.hash === `#${active.id}`)
+          link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    },
+    { rootMargin: "-15% 0px -45% 0px", threshold: 0 },
+  );
+  navSections.forEach((section) => observer.observe(section));
 }
 
-// Typing Effect for Hero Title (adjusted for mobile)
-const heroTitle = document.querySelector('.hero-text h1');
-const text = heroTitle.textContent;
-heroTitle.textContent = '';
-let index = 0;
+const caseButton = document.querySelector(".case-toggle");
+const caseDetails = document.getElementById(
+  caseButton.getAttribute("aria-controls"),
+);
+caseButton.addEventListener("click", () => {
+  const open = caseButton.getAttribute("aria-expanded") !== "true";
+  caseButton.setAttribute("aria-expanded", String(open));
+  caseDetails.hidden = !open;
+  caseButton.replaceChildren(
+    document.createTextNode(open ? "Close overview " : "Explore the work "),
+  );
+  const arrow = document.createElement("span");
+  arrow.setAttribute("aria-hidden", "true");
+  arrow.textContent = open ? "−" : "↗";
+  caseButton.append(arrow);
+});
 
-function typeWriter() {
-    if (index < text.length) {
-        heroTitle.textContent += text.charAt(index);
-        index++;
-        // Faster typing on mobile for better UX
-        const delay = isMobile ? 50 : 100;
-        setTimeout(typeWriter, delay);
-    }
+const contactForm = document.querySelector("#contact-form");
+const submitButton = document.querySelector("#submit-btn");
+const formStatus = document.querySelector("#form-status");
+let submitting = false;
+function showStatus(message, state) {
+  formStatus.textContent = message;
+  formStatus.dataset.state = state;
+  if (state === "error") {
+    formStatus.append(document.createTextNode(" You can also "));
+    const fallback = document.createElement("a");
+    fallback.href = "mailto:rbolamala@gmail.com";
+    fallback.textContent = "email me directly";
+    formStatus.append(fallback, document.createTextNode("."));
+  }
 }
-
-// Start typing effect when page loads
-window.addEventListener('load', () => {
-    // Shorter delay on mobile
-    const initialDelay = isMobile ? 200 : 500;
-    setTimeout(typeWriter, initialDelay);
-});
-
-// Parallax Effect - Removed for better performance
-
-
-// Wait for DOM to be ready
-document.addEventListener('DOMContentLoaded', function() {
-    // Add names to form inputs (already in HTML now, but keeping for safety)
-    const nameInput = document.querySelector('input[placeholder="Your Name"]');
-    const emailInput = document.querySelector('input[placeholder="Your Email"]');
-    const messageInput = document.querySelector('textarea[placeholder="Your Message"]');
-    
-    if (nameInput && !nameInput.name) nameInput.setAttribute('name', 'name');
-    if (emailInput && !emailInput.name) emailInput.setAttribute('name', 'email');
-    if (messageInput && !messageInput.name) messageInput.setAttribute('name', 'message');
-});
-
-// Force download of resume
-document.addEventListener('DOMContentLoaded', function() {
-    const resumeLink = document.querySelector('a[download="Rohith_Devapriya_Resume.pdf"]');
-    if (resumeLink) {
-        resumeLink.addEventListener('click', async function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            try {
-                // Fetch the PDF file
-                const response = await fetch('resume.pdf');
-                const blob = await response.blob();
-                
-                // Create a blob URL
-                const url = window.URL.createObjectURL(blob);
-                
-                // Create a temporary link and trigger download
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'Rohith_Devapriya_Resume.pdf';
-                document.body.appendChild(a);
-                a.click();
-                
-                // Cleanup
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            } catch (error) {
-                console.error('Download failed:', error);
-                // Fallback to normal download
-                window.location.href = 'resume.pdf';
-            }
-            
-            return false;
-        });
+contactForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (submitting) return;
+  const data = new FormData(contactForm);
+  for (const key of ["name", "email", "message"]) {
+    const value = String(data.get(key) || "").trim();
+    if (!value) {
+      showStatus("Please fill in your name, email, and message.", "error");
+      document.getElementById(key).focus();
+      return;
     }
+    data.set(key, value);
+  }
+  if (!contactForm.reportValidity()) return;
+  submitting = true;
+  submitButton.disabled = true;
+  submitButton.textContent = "Sending…";
+  showStatus("Sending your message…", "pending");
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 15000);
+  try {
+    const response = await fetch(contactForm.action, {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" },
+      signal: controller.signal,
+    });
+    const result = await response.json().catch(() => null);
+    if (
+      !response.ok ||
+      !result ||
+      result.ok === false ||
+      result.errors?.length ||
+      (result.ok !== true && typeof result.next !== "string")
+    ) {
+      throw new Error("Delivery was not confirmed");
+    }
+    showStatus(
+      "Thanks for your note. Your message was sent successfully.",
+      "success",
+    );
+    contactForm.reset();
+  } catch (error) {
+    const message =
+      error.name === "AbortError"
+        ? "The request timed out, so I couldn’t confirm delivery. Your message is still here."
+        : "I couldn’t confirm delivery. Your message is still here; please try again.";
+    showStatus(message, "error");
+  } finally {
+    window.clearTimeout(timeout);
+    submitting = false;
+    submitButton.disabled = false;
+    submitButton.replaceChildren(document.createTextNode("Send message "));
+    const arrow = document.createElement("span");
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = "↗";
+    submitButton.append(arrow);
+  }
 });
+document.getElementById("year").textContent = String(new Date().getFullYear());
+
+// Relative scope supports both a root domain and GitHub Pages project paths.
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {
+      /* The portfolio remains usable without offline caching. */
+    });
+  });
+}
