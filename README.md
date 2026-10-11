@@ -1,68 +1,57 @@
-# Portfolio Website
+# Devapriya Rohith Bolamala - Portfolio
 
-A modern, responsive portfolio website showcasing my experience as a Senior Software Engineer and AWS Solutions Architect.
+A responsive portfolio for Devapriya Rohith Bolamala, based in Livonia, Michigan.
+
+## Run locally
+
+From this repository:
+
+```sh
+python3 -m http.server 8000
+```
+
+Open http://localhost:8000. No build step or production dependencies are required.
 
 ## Features
 
-- **Responsive Design**: Fully responsive layout that works on all devices
-- **Dark/Light Theme**: Toggle between dark and light modes with persistent preference
-- **Interactive Elements**: Custom cursor, smooth scrolling, and hover effects
-- **Modern Animations**: Loading animation, scroll progress bar, CSS animations
-- **Professional Timeline**: Work experience displayed in an elegant timeline format
-- **Skills Showcase**: Technical skills organized by category (Languages, Leadership, Cloud, Architecture)
-- **AWS Certification**: Direct link to Credly badge
-- **Resume Download**: Downloadable PDF resume
-- **Client Section**: Featured companies with logos
+- Blue-and-ink design with a matching dark theme. The initial theme follows the device preference; an explicit choice is remembered.
+- Visible Optum healthcare EDI case study: the migration problem, Go/Python contribution, and end-to-end validation. Compact supporting projects and career history.
+- Career history, technical skills, education, AWS credential, and a nine-film cinema gallery with uncropped posters.
+- Keyboard-accessible mobile menu, labeled form fields, visible focus states, reduced-motion support, and direct section links.
+- Updated one-page resume, lightweight portrait, favicon, app icon, and social preview.
+- Contact form with browser validation, duplicate-submit protection, timeout handling, accessible feedback, and direct email fallback. Only a confirmed success clears the fields.
+- Network-first offline cache with paths that work at both a root domain and a GitHub Pages project URL.
 
-## Technologies Used
+## Content and assets
 
-- HTML5
-- CSS3 (with CSS Variables, Grid, and Flexbox)
-- Vanilla JavaScript
-- Font Awesome Icons
-- Google Fonts (Inter)
+- `index.html`: content and semantic structure
+- `style.css`: themes and responsive layouts
+- `script.js`: navigation, themes, contact handling
+- `assets/rohith-portrait.jpg`: optimized portrait
+- `assets/social-card.jpg`: social preview
+- `resume.pdf`: current downloadable resume
+- `sw.js` / `manifest.json`: offline support and installable app metadata
 
-## Structure
+The healthcare diagram is a conceptual overview, not an internal architecture diagram. Project descriptions use information supplied in the portfolio and project notes; no performance metrics are invented.
 
-```
-portfolio/
-├── index.html          # Main HTML file
-├── style.css           # All styling and animations
-├── script.js           # JavaScript for interactivity
-├── profile-photo.jpg   # Profile image
-├── resume.pdf          # Downloadable resume
-└── README.md          # This file
+## Checks
+
+```sh
+node --check script.js
+node --check sw.js
+node --test tests/contact-form.test.cjs
 ```
 
-## How to Run Locally
+The contact tests simulate success, transport errors, invalid responses, timeouts, whitespace validation, and concurrent submissions. They do not send messages.
 
-For the resume download feature to work properly, you need to serve the site through a web server:
+## Deployment
 
-### Option 1: Python (Recommended)
-```bash
-# Navigate to the project directory
-cd /Users/bdprohith/bdp
+The current GitHub Pages address is https://rohithbdp.github.io/bdp/. Relative asset and service worker paths support that prefix. Update the canonical URL and social preview URL in `index.html` if using a custom domain.
 
-# Start a local server
-python3 -m http.server 8000
-```
-Then open http://localhost:8000 in your browser.
-
-### Option 2: VS Code Live Server
-If using VS Code, install the "Live Server" extension and right-click on index.html → "Open with Live Server"
-
-### Note
-Opening the HTML file directly (file://) will cause the resume download to navigate to the PDF instead of downloading it due to browser security restrictions.
-
-## Customization
-
-- Update personal information in `index.html`
-- Modify color scheme using CSS variables in `style.css`
-- Replace `resume.pdf` with your updated resume
-- Add or remove sections as needed
+The contact form uses the existing Formspree endpoint. A real delivery test still requires sending a message and checking the recipient inbox.
 
 ## Contact
 
 - Email: rbolamala@gmail.com
-- LinkedIn: [linkedin.com/in/rbolamala](https://www.linkedin.com/in/rbolamala/)
-- Phone: +1 (214) 506-8251
+- LinkedIn: https://www.linkedin.com/in/rbolamala/
+- GitHub: https://github.com/rohithbdp
