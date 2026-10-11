@@ -988,15 +988,23 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
 }
-.film-shelf figure:nth-child(2) {
-  transform: translateY(20px);
+
+/* Show the entire artwork, including wide and square posters. */
+.film-poster {
+  aspect-ratio: 3 / 4;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  background: #233942;
+  border: 1px solid #3a5059;
+  border-radius: 4px;
 }
 .film-shelf img {
   width: 100%;
-  aspect-ratio: 2/3;
-  object-fit: cover;
-  border-radius: 3px;
-  filter: saturate(0.75);
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  border-radius: 2px;
 }
 .film-shelf figcaption {
   font-size: 10px;
@@ -1637,9 +1645,7 @@ h3 {
     gap: 11px;
     padding-bottom: 17px;
   }
-  .film-shelf figure:nth-child(2) {
-    transform: translateY(12px);
-  }
+
   .film-shelf figcaption {
     font-size: 9px;
   }
@@ -1773,4 +1779,43 @@ h3 {
   font-size: 27px;
   letter-spacing: -1.3px;
   color: var(--accent);
+}
+
+.cinema-grid {
+  align-items: start;
+}
+.cinema-copy {
+  position: sticky;
+  top: calc(var(--header) + 34px);
+}
+.film-shelf {
+  gap: 25px 16px;
+}
+.film-shelf figure {
+  min-width: 0;
+}
+.film-shelf figcaption {
+  font-size: 11px;
+}
+@media (max-width: 850px) {
+  .cinema-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+  .cinema-copy {
+    position: static;
+  }
+  .cinema-copy p {
+    max-width: 500px;
+  }
+}
+@media (max-width: 650px) {
+  .film-shelf {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 14px;
+    padding-bottom: 0;
+  }
+  .film-poster {
+    padding: 6px;
+  }
 }
