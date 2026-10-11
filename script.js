@@ -38,7 +38,7 @@ function setTheme(dark) {
     dark ? "Switch to light theme" : "Switch to dark theme",
   );
   themeButton.setAttribute("aria-pressed", String(dark));
-  themeColor.content = dark ? "#13252c" : "#f5f3ed";
+  themeColor.content = dark ? "#0a1224" : "#f8faff";
 }
 setTheme(root.dataset.theme === "dark");
 themeButton.addEventListener("click", () => {

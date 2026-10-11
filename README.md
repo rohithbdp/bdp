@@ -14,7 +14,7 @@ Open http://localhost:8000. No build step or production dependencies are require
 
 ## Features
 
-- Cream/navy/orange design with a matching dark theme. The initial theme follows the device preference; an explicit choice is remembered.
+- Blue-and-ink design with a matching dark theme. The initial theme follows the device preference; an explicit choice is remembered.
 - Featured Optum IMN Batch / healthcare EDI overview, past cloud services work, and this portfolio's source.
 - Career history, technical skills, education, AWS credential, and a nine-film cinema gallery with uncropped posters.
 - Keyboard-accessible mobile menu, labeled form fields, visible focus states, reduced-motion support, and direct section links.
