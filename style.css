@@ -1768,3 +1768,9 @@ h3 {
     max-width: 170px;
   }
 }
+
+.brand-mark {
+  font-size: 27px;
+  letter-spacing: -1.3px;
+  color: var(--accent);
+}

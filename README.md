@@ -32,7 +32,7 @@ Open http://localhost:8000. No build step or production dependencies are require
 - `resume.pdf`: current downloadable resume
 - `sw.js` / `manifest.json`: offline support and installable app metadata
 
-The healthcare diagram is a conceptual overview, not an internal architecture diagram. Project descriptions use information supplied in the original portfolio; no performance metrics are invented.
+The healthcare diagram is a conceptual overview, not an internal architecture diagram. Project descriptions use information supplied in the portfolio and project notes; no performance metrics are invented.
 
 ## Checks
 

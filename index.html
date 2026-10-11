@@ -55,7 +55,7 @@
           class="brand"
           href="#home"
           aria-label="Devapriya Rohith Bolamala home"
-          ><span class="brand-mark">rb<span>↗</span></span
+          ><span class="brand-mark">BDP</span
           ><span class="brand-name">Devapriya Rohith Bolamala</span></a
         >
         <nav class="navigation" id="navigation" aria-label="Main navigation">
@@ -191,15 +191,16 @@
               <span class="project-number">01</span
               ><span>OPTUM · HEALTHCARE PLATFORM</span>
             </div>
-            <h3>Connecting the dots<br />in healthcare EDI.</h3>
+            <h3>Healthcare claims.<br />Built for the cloud.</h3>
             <p>
-              Healthcare relies on many systems exchanging information
-              correctly. On Optum’s IMN Batch platform, I work on the workflows
-              that support those exchanges.
+              At Optum, I contribute to an AWS-based platform that modernizes
+              healthcare EDI processing. My focus is individual claim workflows,
+              payer configuration, and validating behavior against legacy
+              systems.
             </p>
             <div class="tags">
-              <span>ANSI X12</span><span>AWS</span><span>TIBCO</span
-              ><span>Go</span>
+              <span>837P / 837I</span><span>AWS</span><span>Go</span
+              ><span>Python</span>
             </div>
             <button
               class="text-link case-toggle"
@@ -213,27 +214,28 @@
           <div
             class="workflow-art"
             role="img"
-            aria-label="Conceptual overview: claims and attachments flow through healthcare EDI batch workflows to remittance and acknowledgments."
+            aria-label="Conceptual overview: professional and institutional claims pass through validation, transformation, and routing, producing routing output and acknowledgments."
           >
             <div class="diagram-header">
               <span class="diagram-dot"></span> HEALTHCARE DATA, CONNECTED
               <span>01—04</span>
             </div>
             <div class="flow-inputs">
-              <span><b aria-hidden="true">↗</b> Claims</span
-              ><span><b aria-hidden="true">↗</b> Attachments</span>
+              <span><b aria-hidden="true">↗</b> 837P claims</span
+              ><span><b aria-hidden="true">↗</b> 837I claims</span>
             </div>
             <div class="flow-connector" aria-hidden="true"></div>
             <div class="flow-core">
               <span class="core-symbol" aria-hidden="true">✳</span>
               <div>
-                <strong>IMN Batch</strong><span>EDI transaction workflows</span>
+                <strong>Claims workflow</strong
+                ><span>Validate · transform · route</span>
               </div>
               <span class="core-pulse" aria-hidden="true"></span>
             </div>
             <div class="flow-connector" aria-hidden="true"></div>
             <div class="flow-outputs">
-              <span>Remittance <b aria-hidden="true">↗</b></span
+              <span>Routing output <b aria-hidden="true">↗</b></span
               ><span>Acknowledgments <b aria-hidden="true">↗</b></span>
             </div>
             <p class="diagram-footnote">Conceptual workflow overview</p>
@@ -241,29 +243,29 @@
           <div class="case-details" id="optum-case" hidden>
             <div>
               <span class="eyebrow">THE CONTEXT</span>
-              <h4>Making healthcare exchanges work.</h4>
+              <h4>Modernizing legacy claims processing.</h4>
               <p>
-                The IMN Batch platform supports healthcare transactions within a
-                global clearinghouse environment, including claims, attachments,
-                ERA/remittance, and acknowledgments.
+                An AWS-based platform processes professional and institutional
+                healthcare claims through individual transaction workflows. The
+                migration requires consistent behavior with the legacy system.
               </p>
             </div>
             <div>
               <span class="eyebrow">MY CONTRIBUTION</span>
-              <h4>Implementation and platform support.</h4>
+              <h4>Getting payer configuration right.</h4>
               <p>
-                I work as part of a small team implementing and supporting ANSI
-                X12 transaction standards, using TIBCO and AWS-based workflows
-                for batch processing.
+                I contributed to a payer-grouping fix spanning Go reference-data
+                services and Python orchestration, so grouped payers use the
+                appropriate configuration in downstream output.
               </p>
             </div>
             <div>
-              <span class="eyebrow">THE ENGINEERING FOCUS</span>
-              <h4>Standards, workflows, infrastructure.</h4>
+              <span class="eyebrow">VALIDATION</span>
+              <h4>Follow the claim. Compare the output.</h4>
               <p>
-                This work brings together healthcare transaction formats, cloud
-                infrastructure, and the practical needs of operating a batch
-                platform.
+                End-to-end checks covered professional, institutional, and
+                non-grouped claim scenarios. Comparing output with the legacy
+                system verified the change across service boundaries.
               </p>
             </div>
           </div>
@@ -307,7 +309,7 @@
                   <i></i><i></i><i></i><span>rohith / portfolio</span>
                 </div>
                 <div class="mini-browser-content">
-                  <span>rb↗</span
+                  <span>BDP</span
                   ><strong>Systems.<br /><em>Stories.</em></strong>
                   <div class="mini-lines"><i></i><i></i></div>
                 </div>
@@ -370,8 +372,9 @@
               </div>
               <div class="experience-description">
                 <p>
-                  Implementing and supporting healthcare EDI transactions on the
-                  IMN Batch platform, with TIBCO and AWS-based workflows.
+                  Contributing to cloud modernization of healthcare claims
+                  processing, with Go and Python services, payer configuration
+                  fixes, and end-to-end validation against legacy output.
                 </p>
                 <div class="tags">
                   <span>ANSI X12</span><span>AWS</span><span>Go</span
@@ -483,7 +486,10 @@
               <span class="toolkit-icon" aria-hidden="true">↗</span>
               <div>
                 <h3>Cloud & infrastructure</h3>
-                <p>AWS, Terraform, Docker, Kubernetes, Ansible, CI/CD</p>
+                <p>
+                  AWS, Step Functions, ECS Fargate, Lambda, Terraform, Docker,
+                  Kubernetes, CI/CD
+                </p>
               </div>
             </div>
             <div class="toolkit-row">
@@ -501,8 +507,8 @@
               <div>
                 <h3>Healthcare & collaboration</h3>
                 <p>
-                  ANSI X12, EDI, TIBCO, ERA/remittance, team leadership,
-                  mentoring
+                  ANSI X12, EDI, 837P/837I claims, payer configuration, team
+                  leadership, mentoring
                 </p>
               </div>
             </div>
@@ -695,9 +701,7 @@
     </main>
     <footer class="site-footer">
       <div class="container footer-inner">
-        <a class="brand-mark" href="#home" aria-label="Back to top"
-          >rb<span>↗</span></a
-        >
+        <a class="brand-mark" href="#home" aria-label="Back to top">BDP</a>
         <p>© <span id="year">2026</span> Devapriya Rohith Bolamala</p>
         <span class="footer-note">Made with intention.</span
         ><a class="back-top" href="#home"
