@@ -201,31 +201,32 @@
             at what I work on.
           </p>
         </div>
-        <article class="featured-project">
+        <article class="featured-project" aria-labelledby="optum-title">
+          <div class="feature-heading">
+            <span
+              ><span class="status-dot" aria-hidden="true"></span> CURRENT
+              PROJECT</span
+            ><span>OPTUM · SEP 2025 — PRESENT</span>
+          </div>
           <div class="project-copy">
             <div class="project-meta">
               <span class="project-number">01</span
               ><span>OPTUM · HEALTHCARE PLATFORM</span>
             </div>
-            <h3>Modernizing healthcare claims</h3>
+            <h3 id="optum-title">Modernizing<br />healthcare claims.</h3>
             <p>
-              At Optum, I contribute to an AWS-based platform that modernizes
-              healthcare EDI processing. My focus is individual claim workflows,
-              payer configuration, and validating behavior against legacy
-              systems.
+              Moving professional and institutional claims from legacy
+              processing to AWS. I contribute to the Go and Python services
+              behind individual claim workflows, payer configuration, and
+              validation.
             </p>
             <div class="tags">
               <span>837P / 837I</span><span>AWS</span><span>Go</span
               ><span>Python</span>
             </div>
-            <button
-              class="text-link case-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-controls="optum-case"
+            <a class="text-link" href="#optum-case"
+              >My contribution <span aria-hidden="true">↓</span></a
             >
-              Explore the work <span aria-hidden="true">↗</span>
-            </button>
           </div>
           <div
             class="workflow-art"
@@ -256,37 +257,47 @@
             </div>
             <p class="diagram-footnote">Conceptual workflow overview</p>
           </div>
-          <div class="case-details" id="optum-case" hidden>
+          <div
+            class="case-details"
+            id="optum-case"
+            aria-label="Optum project case study"
+          >
             <div>
-              <span class="eyebrow">THE CONTEXT</span>
-              <h4>Modernizing legacy claims processing.</h4>
+              <span class="eyebrow"
+                ><span class="case-step">01</span> THE PROBLEM</span
+              >
+              <h4>Preserve behavior during migration.</h4>
               <p>
-                An AWS-based platform processes professional and institutional
-                healthcare claims through individual transaction workflows. The
-                migration requires consistent behavior with the legacy system.
+                The AWS migration needs to produce consistent output with the
+                legacy system, including claims that use grouped payer
+                configuration.
               </p>
             </div>
             <div>
-              <span class="eyebrow">MY CONTRIBUTION</span>
-              <h4>Getting payer configuration right.</h4>
+              <span class="eyebrow"
+                ><span class="case-step">02</span> MY CONTRIBUTION</span
+              >
+              <h4>Use the correct payer configuration.</h4>
               <p>
-                I contributed to a payer-grouping fix spanning Go reference-data
-                services and Python orchestration, so grouped payers use the
-                appropriate configuration in downstream output.
+                I contributed to a payer-grouping fix across Go reference-data
+                services and Python orchestration, so downstream processing
+                selects the appropriate payer configuration.
               </p>
             </div>
             <div>
-              <span class="eyebrow">VALIDATION</span>
-              <h4>End-to-end validation.</h4>
+              <span class="eyebrow"
+                ><span class="case-step">03</span> HOW I CHECKED IT</span
+              >
+              <h4>Compare complete claim workflows.</h4>
               <p>
-                End-to-end checks covered professional, institutional, and
-                non-grouped claim scenarios. Comparing output with the legacy
-                system verified the change across service boundaries.
+                I checked professional, institutional, and non-grouped claim
+                scenarios end to end, comparing their output with the legacy
+                system to verify the fix across service boundaries.
               </p>
             </div>
           </div>
         </article>
-        <div class="project-grid">
+        <div class="project-grid supporting-projects">
           <article class="project-card">
             <div class="project-art cloud-art" aria-hidden="true">
               <span class="art-label">DISTRIBUTED BY DESIGN</span>
@@ -570,13 +581,17 @@
               My film shelf<span class="heading-period">.</span>
             </h2>
             <p>
-              Outside of code, cinema is my reset. A great film makes me laugh,
-              feel, and forget everything else for a while. These are a few
-              favorites.
+              Cinema is how I switch off. These are the films I come back to for
+              the humor, the characters, and the feeling they leave behind.
             </p>
-            <span class="cinema-signoff"
-              >Nine favorites. Always worth a rewatch.</span
-            >
+            <div class="cinema-library">
+              <span class="library-count">09</span
+              ><span
+                >PERSONAL COLLECTION<br /><strong
+                  >Always worth a rewatch.</strong
+                ></span
+              >
+            </div>
           </div>
           <div class="film-shelf">
             <figure>

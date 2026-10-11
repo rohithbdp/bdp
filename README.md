@@ -15,7 +15,7 @@ Open http://localhost:8000. No build step or production dependencies are require
 ## Features
 
 - Blue-and-ink design with a matching dark theme. The initial theme follows the device preference; an explicit choice is remembered.
-- Featured Optum IMN Batch / healthcare EDI overview, past cloud services work, and this portfolio's source.
+- Visible Optum healthcare EDI case study: the migration problem, Go/Python contribution, and end-to-end validation. Compact supporting projects and career history.
 - Career history, technical skills, education, AWS credential, and a nine-film cinema gallery with uncropped posters.
 - Keyboard-accessible mobile menu, labeled form fields, visible focus states, reduced-motion support, and direct section links.
 - Updated one-page resume, lightweight portrait, favicon, app icon, and social preview.
@@ -26,7 +26,7 @@ Open http://localhost:8000. No build step or production dependencies are require
 
 - `index.html`: content and semantic structure
 - `style.css`: themes and responsive layouts
-- `script.js`: navigation, themes, project disclosure, and contact handling
+- `script.js`: navigation, themes, contact handling
 - `assets/rohith-portrait.jpg`: optimized portrait
 - `assets/social-card.jpg`: social preview
 - `resume.pdf`: current downloadable resume

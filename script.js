@@ -124,23 +124,6 @@ if ("IntersectionObserver" in window) {
   navSections.forEach((section) => observer.observe(section));
 }
 
-const caseButton = document.querySelector(".case-toggle");
-const caseDetails = document.getElementById(
-  caseButton.getAttribute("aria-controls"),
-);
-caseButton.addEventListener("click", () => {
-  const open = caseButton.getAttribute("aria-expanded") !== "true";
-  caseButton.setAttribute("aria-expanded", String(open));
-  caseDetails.hidden = !open;
-  caseButton.replaceChildren(
-    document.createTextNode(open ? "Close overview " : "Explore the work "),
-  );
-  const arrow = document.createElement("span");
-  arrow.setAttribute("aria-hidden", "true");
-  arrow.textContent = open ? "−" : "↗";
-  caseButton.append(arrow);
-});
-
 const contactForm = document.querySelector("#contact-form");
 const submitButton = document.querySelector("#submit-btn");
 const formStatus = document.querySelector("#form-status");
