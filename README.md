@@ -1,4 +1,4 @@
-# Rohith Bolamala - Portfolio
+# Devapriya Rohith Bolamala - Portfolio
 
 A responsive portfolio for Devapriya Rohith Bolamala, based in Livonia, Michigan.
 

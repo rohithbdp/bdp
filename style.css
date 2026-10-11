@@ -1753,3 +1753,18 @@ h3 {
     display: block !important;
   }
 }
+
+/* Allow the full name to fit alongside controls on narrow screens. */
+.brand {
+  min-width: 0;
+}
+.brand-mark,
+.header-actions {
+  flex-shrink: 0;
+}
+@media (max-width: 650px) {
+  .brand-name {
+    line-height: 1.35;
+    max-width: 170px;
+  }
+}

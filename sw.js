@@ -1,4 +1,4 @@
-const CACHE_NAME = "bdp-portfolio-v5";
+const CACHE_NAME = "bdp-portfolio-v6";
 const ASSETS = [
   "index.html",
   "style.css",
